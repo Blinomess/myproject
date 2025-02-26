@@ -1,0 +1,21 @@
+{% extends 'main/pattern.html' %}
+
+{%block title %} Создать сообщение {%endblock%}
+
+{% block admin-btn %}
+    <a href="{% url 'home' %}" class="btn btn-dark me-5" style="width: 200px; height: 55px; font-size: 27px; padding: 5px;">На главную</a>
+    <a href="{% url 'contacts_about' %}" class="btn btn-dark" style="width: 150px; height: 55px; font-size: 27px; padding: 5px;">Контакты</a>
+{% endblock %}
+
+{% block content %}
+    <div class="application_form">
+        <h1 style="margin-bottom: 100px;">Оставьте ваше сообщение:</h1>
+        <form method="post">
+            {% csrf_token %}
+            <input type="title" placeholder="Тема сообщения" class="form-control"><br>
+            <textarea placeholder="Опишите вашу проблему" class="form-control" style="min-height: 100px; max-height: 300px;"></textarea><br>
+            <input type="entermail" placeholder="вашапочта@mail.ru (пример)" class="form-control"><br>
+            <a class="btn btn-success btn-lg" type="submit">Отправить сообщение</a>
+        </form>
+    </div>
+{% endblock %}

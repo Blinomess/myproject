@@ -1,14 +1,14 @@
 {% extends 'main/pattern.html' %}
 
-{%block title %} Крысятничество.рф {%endblock%}
-
+{%block title %} Крысятничество.рф {%endblock%} <!--переименовать потом-->
+{% block admin-btn %}
+    <a href="admin.html" class="btn btn-dark me-5" style="width: 350px; font-size: 27px; padding: 5px;">Войти как администратор</a>
+    <a href="{% url 'contacts_about' %}" class="btn btn-dark" style="width: 150px; height: 55px; font-size: 27px; padding: 5px;">Контакты</a>
+{% endblock %}
 {% block content %}
-<link rel="stylesheet" href="/static/css/main.css">
-<main>
     <div>
-        <h1 class="display-3">Здравствуйте!</h1>
-        <p class="lead">Добавьте здесь свой текст...</p>
-        <a href="#" class="btn btn-primary">Создать сообщение</a>
-    </div>
-</main>
+        <b><p style="font-size: 7rem">Здравствуйте!</p></b>
+        <p style="font-size: 3rem; margin-bottom: 250px;">У вас появилась проблема?<br>Напишите и мы поможем вам!</p>
+        <a href="{% url 'create' %}" class="btn btn-primary"><b>Создать сообщение</b></a>
+    </div> 
 {% endblock %}
