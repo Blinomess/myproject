@@ -1,0 +1,22 @@
+{% extends 'main/pattern.html' %}
+
+{%block title %} Войти {%endblock%} 
+
+{% block admin-btn %}
+    <a href="{% url 'home' %}" class="btn btn-dark" style="width: 200px; height: 55px; font-size: 27px; padding: 5px;">На главную</a>
+{% endblock %}
+
+{% block content %}
+<div>
+    <h1 style="margin-bottom: 100px;">Чтобы войти, используйте логи и пароль диспетчера:</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.username }}<br>
+        {{ form.password }}<br>
+        <button type="submit" class="btn btn-primary">Войти</button>
+        {% if form.errors %}
+            <div class="text-danger mt-3">Неверный логин или пароль</div>
+        {% endif %}
+    </form>
+</div>
+{% endblock %}

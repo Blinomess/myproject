@@ -12,10 +12,13 @@
         <h1 style="margin-bottom: 100px;">Оставьте ваше сообщение:</h1>
         <form method="post">
             {% csrf_token %}
-            <input type="title" placeholder="Тема сообщения" class="form-control"><br>
-            <textarea placeholder="Опишите вашу проблему" class="form-control" style="min-height: 100px; max-height: 300px;"></textarea><br>
-            <input type="entermail" placeholder="вашапочта@mail.ru (пример)" class="form-control"><br>
+            {{form.title}}<br>
+            {{form.mes_text}}<br>
+            {{form.ent_mail}}<br>
+            <span>{{error}}</span> <!--хз на всякий но это не пригодится-->
+            <!--думаю можно сюда впихнуть код для проверки почты но потом...-->
             <a class="btn btn-success btn-lg" type="submit">Отправить сообщение</a>
+
         </form>
     </div>
 {% endblock %}

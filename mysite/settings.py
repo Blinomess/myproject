@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'main',
     'contacts',
     'message',
+    'dispanel',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
