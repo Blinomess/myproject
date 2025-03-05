@@ -1,18 +1,14 @@
-from .models import Login
+from django import forms
 from django.contrib.auth.forms import AuthenticationForm
-from django.forms import TextInput
 
 class LoginForm(AuthenticationForm):
-    class Meta:
-        model=Login
-        fields=['login','password']
-        widgets={
-            'login': TextInput(attrs={
-                'class':'form-control',
-                'placeholder':'Логин'
-            }),
-            'password': TextInput(attrs={
-                'class':'form-control',
-                'placeholder':'Пароль'
-            })
-        }
+    username = forms.CharField(widget=forms.TextInput(attrs={
+        'class': 'form-control', 
+        'style': 'width: 400px; margin-left: 39.9%',
+        'placeholder': 'Логин'
+        }))
+    password = forms.CharField(widget=forms.PasswordInput(attrs={
+        'class': 'form-control', 
+        'style': 'width: 400px; margin-left: 39.9%',
+        'placeholder': 'Пароль' 
+        }))

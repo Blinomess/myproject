@@ -13,8 +13,8 @@ def login_view(request):
     else:
         form = LoginForm()
 
-    return render(request, 'dispatcher/login.html', {'form': form})
+    return render(request, 'dispanel/login.html', {'form': form})
 
 @login_required
 def dispatcher_panel(request):
-    return render(request, 'dispatcher/panel.html')
+    return render(request, 'dispanel/dispanel_home.html')
