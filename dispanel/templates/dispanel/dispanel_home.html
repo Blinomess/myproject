@@ -1,0 +1,7 @@
+{% extends 'main/pattern.html' %}
+
+{%block title %} панель диспетчера {%endblock%} 
+
+{% block admin-btn %}
+    <a href="{% url 'logout' %}" class="btn btn-dark" style="width: 200px; height: 55px; font-size: 27px; padding: 5px;">Выйти</a>
+{% endblock %}

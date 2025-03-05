@@ -1,9 +1,9 @@
 from django.db import models
 
-class message_form(models.Model()):
+class Messages(models.Model):
     title=models.CharField('Тема', max_length=50)
-    text=models.TextField('Сообщение')
-    entmail=models.CharField('Почта',max_length=50)
-    def _str_(self):
+    mes_text=models.TextField('Сообщение')
+    ent_mail=models.CharField('Почта',max_length=50)
+    def __str__(self):
         return self.title
     
