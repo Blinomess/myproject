@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        {% load static %}
+        <link rel="icon" type="image/x-icon" href="{% static 'main\images\envira-brands.svg' %}">
+        <title>Сообщение отправлено</title>
+        <script type="text/javascript">
+            let timeLeft = 3;
+            function updateTimer() {
+                document.getElementById('timer').innerText = timeLeft;
+                timeLeft--;
+                if (timeLeft < 0) {
+                    window.location.href = "{% url 'home' %}";
+                }
+            }
+            setInterval(updateTimer, 1000);
+        </script>
+    </head>
+    <body>
+        <main>
+            <h2 style="margin-top: 10vh;">Сообщение успешно отправлено! Вы будете перенаправлены на главную страницу через <span id="timer">3</span> секунды</h2>
+        </main>
+    </body>
+</html>

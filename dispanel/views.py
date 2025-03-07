@@ -1,7 +1,8 @@
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, logout
 from django.shortcuts import render, redirect
 from .forms import LoginForm
+from message.models import Messages
 
 def login_view(request):
     if request.method == "POST":
@@ -15,6 +16,11 @@ def login_view(request):
 
     return render(request, 'dispanel/login.html', {'form': form})
 
+def logout_view(request):
+    logout(request)
+    return redirect('login')
+
 @login_required
 def dispatcher_panel(request):
-    return render(request, 'dispanel/dispanel_home.html')
+    messages = Messages.objects.order_by('-created_at')
+    return render(request, 'dispanel/dispanel_home.html',  {'messages': messages})

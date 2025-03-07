@@ -8,15 +8,18 @@ class MessagesForm(ModelForm):
         widgets={
             'title': TextInput(attrs={
                 'class':'form-control',
-                'placeholder':'Тема сообщения'
+                'placeholder':'Тема сообщения',
+                'required': 'required'
             }),
             'ent_mail': TextInput(attrs={
                 'class':'form-control',
-                'placeholder':'вашапочта@mail.ru (пример)'
+                'placeholder':'вашапочта@mail.ru (пример)',
+                'required': 'required'
             }),
             'mes_text': Textarea(attrs={
                 'class':'form-control',
                 'style':'min-height: 100px; max-height: 300px;',
-                'placeholder':'Опишите вашу проблему'
+                'placeholder':'Опишите вашу проблему',
+                'required': 'required'
             })
         }
