@@ -1,7 +1,80 @@
-{% extends 'main/pattern.html' %}
-
-{%block title %} панель диспетчера {%endblock%} 
-
-{% block admin-btn %}
-    <a href="{% url 'logout' %}" class="btn btn-dark" style="width: 200px; height: 55px; font-size: 27px; padding: 5px;">Выйти</a>
-{% endblock %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="icon" type="image/x-icon" href="{% static 'main\images\envira-brands.svg' %}">
+        <title>Панель диспетчера</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        <link rel="stylesheet" href="{% static 'main/css/dispanel.css'%}">
+    </head>
+    <body>
+        <header class="custom-header py-3 px-5 d-flex align-items-center justify-content-between">
+            <div class="d-flex align-items-center">
+                <i class="fa-solid fa-user fa-3x me-3" style="color: #ffffff;"></i>
+                <h1 class="h2 mb-0" style="color: white">Здравствуйте, {{ user.username }}!</h1>
+            </div>
+            <div class="main-btns">
+                <a href="{% url 'logout' %}" class="btn btn-light" style="width: 200px; height: 55px; font-size: 27px; padding: 5px;">Выйти</a>
+            </div>
+        </header>
+        <main>
+            <section class="messages-list">
+                <h2>Фиговины</h2>
+                <h3 style="color: aqua">Активные</h3>
+                <div class="message active" onclick="showDetails('message1')">
+                    <div class="message-text">
+                        <strong>У меня дом сгорел</strong>
+                        <p>играл со спичками</p>
+                    </div>
+                    <div class="status error">❗</div>
+                </div>
+    
+                <div class="message active" onclick="showDetails('message2')">
+                    <div class="message-text">
+                        <strong>У меня дом сгорел</strong>
+                        <p>играл со спичками</p>
+                    </div>
+                    <div class="status error">❗</div>
+                </div>
+    
+                <h3>Завершенные</h3>
+                <div class="message completed">
+                    <div class="message-text">
+                        <strong>У меня дом сгорел</strong>
+                        <p>играл со спичками</p>
+                    </div>
+                    <div class="status success">✔</div>
+                </div>
+    
+                <div class="message completed">
+                    <div class="message-text">
+                        <strong>писька застряла в арбузе</strong>
+                        <p>памагите</p>
+                    </div>
+                    <div class="status success">✔</div>
+                </div>
+    
+            </section>
+    
+            <section class="message-details hidden" id="details">
+                <h2>Информация</h2>
+                <h3 id="message-title">У меня дом сгорел</h3>
+    
+                <p><strong><i>Описание</i></strong></p>
+                <p id="message-description">
+                    играл со спичками ляля ляля играл со спичками ляля...
+                </p>
+    
+                <p><strong><i>Адрес</i></strong></p>
+                <p id="message-address">Москва, пр. Вернадского, д. 82</p>
+    
+                <div class="buttons">
+                    <button class="btn success">Написать на почту</button>
+                    <button class="btn danger">Отметить как прочитанное</button>
+                </div>
+            </section>
+        </main>
+    </body>
+</html>
