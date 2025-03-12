@@ -16,64 +16,35 @@
                 <h1 class="h2 mb-0" style="color: white">Здравствуйте, {{ user.username }}!</h1>
             </div>
             <div class="main-btns">
-                <a href="{% url 'logout' %}" class="btn btn-light" style="width: 200px; height: 55px; font-size: 27px; padding: 5px;">Выйти</a>
+                <a href="{% url 'logout' %}" class="btn btn-light">Выйти</a>
             </div>
         </header>
         <main>
             <section class="messages-list">
-                <h2>Фиговины</h2>
-                <h3 style="color: aqua">Активные</h3>
-                <div class="message active" onclick="showDetails('message1')">
-                    <div class="message-text">
-                        <strong>У меня дом сгорел</strong>
-                        <p>играл со спичками</p>
-                    </div>
-                    <div class="status error">❗</div>
-                </div>
-    
-                <div class="message active" onclick="showDetails('message2')">
-                    <div class="message-text">
-                        <strong>У меня дом сгорел</strong>
-                        <p>играл со спичками</p>
-                    </div>
-                    <div class="status error">❗</div>
-                </div>
-    
-                <h3>Завершенные</h3>
-                <div class="message completed">
-                    <div class="message-text">
-                        <strong>У меня дом сгорел</strong>
-                        <p>играл со спичками</p>
-                    </div>
-                    <div class="status success">✔</div>
-                </div>
-    
-                <div class="message completed">
-                    <div class="message-text">
-                        <strong>писька застряла в арбузе</strong>
-                        <p>памагите</p>
-                    </div>
-                    <div class="status success">✔</div>
-                </div>
-    
-            </section>
-    
-            <section class="message-details hidden" id="details">
-                <h2>Информация</h2>
-                <h3 id="message-title">У меня дом сгорел</h3>
-    
-                <p><strong><i>Описание</i></strong></p>
-                <p id="message-description">
-                    играл со спичками ляля ляля играл со спичками ляля...
-                </p>
-    
-                <p><strong><i>Адрес</i></strong></p>
-                <p id="message-address">Москва, пр. Вернадского, д. 82</p>
-    
-                <div class="buttons">
-                    <button class="btn success">Написать на почту</button>
-                    <button class="btn danger">Отметить как прочитанное</button>
-                </div>
+                <h3>Новые сообщения</h3>
+                {% for message in new_messages %}
+                    <a class="message" href="{% url 'message_details' message.id %}">
+                        <div>
+                            <strong>{{message.title}}</strong>
+                            <p>{{ message.mes_text|truncatechars:50 }}</p>
+                        </div>
+                        <div class="status error"></div>
+                    </a>
+                {%empty%}
+                    <p>Новых сообщений пока нет! Детка, ты выполнила задание на 5+</p>
+                {%endfor%}
+                <h3>Прочитанные сообщения</h3>
+                {%for message in read_messages %}
+                    <a class="message" href="{% url 'message_details' message.id %}">
+                        <div>
+                            <strong>{{message.title}}</strong>
+                            <p>{{ message.mes_text|truncatechars:50 }}</p>
+                        </div>
+                        <div class="status success"></div>
+                    </a>
+                {%empty%}
+                    <p>Сообщений нет :(</p>
+                {%endfor%}
             </section>
         </main>
     </body>
