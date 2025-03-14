@@ -1,8 +1,9 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, logout
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .forms import LoginForm
 from message.models import Messages
+from django.http import JsonResponse
 
 def login_view(request):
     if request.method == "POST":
@@ -22,5 +23,9 @@ def logout_view(request):
 
 @login_required
 def dispatcher_panel(request):
-    messages = Messages.objects.order_by('-created_at')
-    return render(request, 'dispanel/dispanel_home.html',  {'messages': messages})
+    active_messages = Messages.objects.filter(status='active').order_by('-created_at')
+    completed_messages = Messages.objects.filter(status='completed').order_by('-created_at')
+    return render(request, 'dispanel/dispanel_home.html', {
+        'active_messages': active_messages,
+        'completed_messages': completed_messages
+    })

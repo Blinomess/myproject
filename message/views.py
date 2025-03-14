@@ -9,7 +9,6 @@ def message_text(request):
             return redirect('message_complete')
     else:   
         form = MessagesForm()
-
     return render(request, 'message\make_a_message.html', {'form': form})
 
 def message_complete(request):
