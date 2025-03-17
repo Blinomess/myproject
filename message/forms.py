@@ -4,7 +4,7 @@ from django.forms import ModelForm, TextInput, Textarea
 class MessagesForm(ModelForm):
     class Meta:
         model=Messages
-        fields=['title', 'mes_text', 'ent_mail']
+        fields=['title', 'mes_text', 'ent_mail', 'latitude','longitude']
         widgets={
             'title': TextInput(attrs={
                 'class':'form-control',
@@ -21,5 +21,19 @@ class MessagesForm(ModelForm):
                 'style':'min-height: 100px; max-height: 300px;',
                 'placeholder':'Опишите вашу проблему',
                 'required': 'required'
-            })
+            }),
+            'latitude': TextInput(attrs={
+                'class': 'form-control',
+                'style': 'width: 100px',
+                'readonly': 'readonly',
+                'placeholder': 'Кликните на карту',
+                'required': 'required'
+            }),
+            'longitude': TextInput(attrs={
+                'class': 'form-control',
+                'style': 'width: 100px',
+                'readonly': 'readonly', 
+                'placeholder': 'Кликните на карту',
+                'required': 'required'
+            }),
         }

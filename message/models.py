@@ -7,15 +7,12 @@ class Messages(models.Model):
     title=models.CharField('Тема', max_length=50)
     mes_text=models.TextField('Сообщение')
     ent_mail=models.CharField('Почта',max_length=50)
-    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='active')
+    latitude = models.FloatField('Широта', default='0.0')
+    longitude = models.FloatField('Долгота', default='0.0')
     created_at = models.DateTimeField(auto_now_add=True)
-    status=models.CharField(max_length=5, choices=MES_STATUS, default='new')
+    status=models.CharField(max_length=5, choices=MES_STATUS, default='new')  
     def __str__(self):
         return self.title
     class Meta:
         verbose_name='Сообщение'
         verbose_name_plural='Сообщения'
-
-class Location(models.Model):
-    latitude = models.FloatField()
-    longitude = models.FloatField()

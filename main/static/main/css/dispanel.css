@@ -37,7 +37,7 @@ main {
     margin: 10px 0;
     border-radius: 5px;
     cursor: pointer;
-    text-decoration: none; 
+    text-decoration: none;
     color: inherit;
 }
 
@@ -73,7 +73,7 @@ main {
     color: black;
 }
 
-.btn-primary{
+.btn-primary {
     margin-left: 20px;
     width: 200px; 
     height: 50px; 
@@ -81,7 +81,7 @@ main {
     padding: 9px;
 }
 
-.btn-danger{
+.btn-danger {
     margin-left: 20px;
     background: red;
     width: 250px; 
@@ -90,7 +90,7 @@ main {
     padding: 9px;
 }
 
-.btn-dark{
+.btn-dark {
     width: 100px;
     height: 50px; 
     font-size: 20px; 
@@ -112,13 +112,11 @@ main {
     transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
-/* Плавное появление окна */
 .modal-overlay.show {
     opacity: 1;
     visibility: visible;
 }
 
-/* Стили для модального окна */
 .modal-content {
     background: white;
     padding: 20px;
@@ -130,12 +128,10 @@ main {
     transition: transform 0.3s ease;
 }
 
-/* Анимация появления */
 .modal-overlay.show .modal-content {
     transform: translateY(0);
 }
 
-/* Стили для кнопок */
 .button {
     padding: 10px 15px;
     border: none;
