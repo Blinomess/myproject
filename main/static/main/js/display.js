@@ -12,7 +12,6 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     const toggleButtons = document.querySelectorAll(".toggle-btn");
-
     toggleButtons.forEach((btn) => {
         btn.addEventListener("click", function () {
             const messagesBlock = this.nextElementSibling; // Блок после кнопки
@@ -27,11 +26,15 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     const openYandexMapButton = document.getElementById("openYandexMap");
+    openYandexMapButton.addEventListener("click", function () {
+        let latitude = this.getAttribute("data-latitude").replace(",", ".");
+        let longitude = this.getAttribute("data-longitude").replace(",", ".");
 
-    openYandexMapButton.addEventListener("click", function() {
-        const latitude = parseFloat("{{ message.latitude }}");
-        const longitude = parseFloat("{{ message.longitude }}");
-        const yandexMapUrl = `https://yandex.ru/maps/?ll=${longitude}%2С${latitude}&z=14`;
-        window.open(yandexMapUrl, '_blank');
+        if (!isNaN(latitude) && !isNaN(longitude) && latitude !== 0 && longitude !== 0) {
+            const yandexMapUrl = `https://yandex.ru/maps/?ll=${longitude},${latitude}&z=17&mode=routes&rtext=54.913570%2C37.371710~${latitude}%2C${longitude}&rtt=mt`;
+            window.open(yandexMapUrl, '_blank');
+        } else {
+            alert("Ошибка: неверные координаты! " + latitude + ", " + longitude);
+        }
     });
 });

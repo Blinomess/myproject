@@ -1,4 +1,5 @@
-.custom-header {
+
+.custom-header { 
     border-bottom: 2px solid black;
     background-color: rgba(255, 255, 255, 0.74);
 }
@@ -6,16 +7,21 @@
     display: flex;
     justify-content: flex-end;
 }
-.btn-primary {
-    font-size: 2.5rem;
-    padding: 10px 20px;
+
+.btn-create{
+    width:28%;
+    height: 55px;
+    font-size: larger;
+    padding: 12px;
 }
+
 body{
     background-color: black;
 }
+
 body::before{
     content: '';
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;
@@ -27,7 +33,8 @@ body::before{
     filter: blur(5px);
     z-index: -1;
 }
-main {
+
+main { 
     margin-top: 10vh;
     color: white;
     position: relative;
@@ -36,7 +43,46 @@ main {
     justify-content: center;
     flex-direction: column;
 }
-.application_form{
-    width: 750px;
-    margin-left: 30%;
+
+:root {
+    --index: calc(1vw + 1vh);
+    --gallery-gap: calc(var(--index) * 0.1);
+}
+
+.login_form {
+    margin: var(--gallery-gap) auto;
+    background: rgba(255, 255, 255, 0.1);
+    padding: var(--gallery-gap);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+    max-width: 700px;
+}
+
+.login_form h1 {
+    margin-bottom: var(--gallery-gap);
+    font-size: 2rem;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gallery-gap);
+}
+
+form div{
+    margin-right: 47%;
+}
+
+.btn-enter{
+    font-size: 2rem;
+    margin-left: 35%;
+    width:30%;
+}
+
+.text-danger{
+    text-align: center;
+    width: 100%;
 }

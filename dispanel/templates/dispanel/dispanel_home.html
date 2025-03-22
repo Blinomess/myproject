@@ -16,36 +16,43 @@
                 <h1 class="h2 mb-0" style="color: white">Здравствуйте, {{ user.username }}!</h1>
             </div>
             <div class="main-btns">
-                <a href="{% url 'logout' %}" class="btn btn-light">Выйти</a>
+                <a href="{% url 'logout' %}" class="btn btn-light" style="width: 200px; height: 55px; font-size: 30px; padding: 5px; color: black;">Выйти</a>
             </div>
         </header>
         <main>
             <section class="messages-list">
                 <h3>Новые сообщения</h3>
-                {% for message in new_messages %}
-                    <a class="message" href="{% url 'message_details' message.id %}">
-                        <div>
-                            <strong>{{message.title}}</strong>
-                            <p>{{ message.mes_text|truncatechars:50 }}</p>
-                        </div>
-                        <div class="status error"></div>
-                    </a>
-                {%empty%}
-                    <p>Новых сообщений пока нет! Детка, ты выполнила задание на 5+</p>
-                {%endfor%}
+                <div class="new_mess">
+                    <div class="readMessages">
+                        {% for message in new_messages %}
+                            <a class="message" href="{% url 'message_details' message.id %}">
+                                <div>
+                                    <strong>{{message.title}}</strong>
+                                    <p>{{ message.mes_text|truncatechars:50 }}</p>
+                                </div>
+                                <div class="status error"></div>
+                            </a>
+                        {%empty%}
+                            <p>Новых сообщений пока нет! Детка, ты выполнила задание на 5+</p>
+                        {%endfor%}
+                    </div>
+                </div>
                 <h3>Прочитанные сообщения</h3>
-                {%for message in read_messages %}
-                    <a class="message" href="{% url 'message_details' message.id %}">
-                        <div>
-                            <strong>{{message.title}}</strong>
-                            <p>{{ message.mes_text|truncatechars:50 }}</p>
-                        </div>
-                        <div class="status success"></div>
-                    </a>
-                {%empty%}
-                    <p>Сообщений нет :(</p>
-                {%endfor%}
+                <div class="readMessages">
+                    {%for message in read_messages %}
+                        <a class="message" href="{% url 'message_details' message.id %}">
+                            <div>
+                                <strong>{{message.title}}</strong>
+                                <p>{{ message.mes_text|truncatechars:50 }}</p>
+                            </div>
+                            <div class="status success"></div>
+                        </a>
+                    {%empty%}
+                        <p>Сообщений нет :(</p>
+                    {%endfor%}
+                </div> 
             </section>
         </main>
+        <script src="{% static 'main/js/display.js'%}"></script>
     </body>
 </html>

@@ -9,16 +9,20 @@
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
         <link rel="stylesheet" href="{% static 'main/css/message_form.css'%}">
         <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&apikey=49577f47-020f-439f-b745-2e711ce62d5c"></script>
+        <style>
+            .hidden{
+                display: none;
+            }
+        </style>
     </head>
     <body>
         <header class="custom-header py-3 px-5 d-flex align-items-center justify-content-between">
             <div class="d-flex align-items-center">
                 <img src="{% static 'main/images/envira-brands.svg' %}" alt="icon" width="80" class="me-3">
-                <h1 class="h2 mb-0">Крысятничество.рф</h1> <!--переименовать-->
+                <h1 class="h2 mb-0">Делаем мир лучше</h1>
             </div>
             <div class="main-btns">
-                <a href="{% url 'home' %}" class="btn btn-dark me-5" style="width: 200px; height: 55px; font-size: 27px; padding: 5px;">На главную</a>
-                <a href="{% url 'contacts_about' %}" class="btn btn-dark" style="width: 150px; height: 55px; font-size: 27px; padding: 5px;">Контакты</a>
+                <a href="{% url 'home' %}" class="btn btn-dark" style="width: 200px; height: 55px; font-size: 27px; padding: 5px;">На главную</a>
             </div>
         </header>
         <main>
@@ -30,15 +34,22 @@
                     {{form.mes_text}}<br>
                     {{form.ent_mail}}<br>
                     <p style="font-size: 20px; margin-right: 100%;">Координаты:</p>
-                    <div style="display: flex; gap: 10px;">
+                    <div style="display: flex; gap: 10px; height: 50px;">
                         {{ form.latitude }}
                         {{ form.longitude }}
+                        <a id="openModal" class="btn btn-primary openmap" style="width: 100px;">Карта</a>
                     </div><br>
                     <button class="btn btn-success btn-lg" type="submit">Отправить сообщение</button>
                 </form>
             </div>
             <script src="{% static 'main\js\map.js'%}"></script>
-            <div id="mymap" class="maap"></div>
+            <script src="{% static 'main\js\display.js'%}"></script>
+            <div id="modal" class="modal-overlay">
+                <div id="mymap" class="maap"></div>
+                <div class="modal-content">
+                    <button id="closeModal" class="btn btn-dark close-btn">Закрыть</button>
+                </div>
+            </div>
         </main>
     </body>
 </html>

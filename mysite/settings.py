@@ -32,7 +32,6 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'main',
-    'contacts',
     'message',
     'dispanel',
     'django.contrib.admin',

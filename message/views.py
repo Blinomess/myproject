@@ -1,6 +1,5 @@
 from django.shortcuts import render, redirect
 from .forms import MessagesForm
-from .models import Messages
 
 def message_text(request):
     if request.method=='POST':

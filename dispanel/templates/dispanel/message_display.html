@@ -21,7 +21,7 @@
                 <h1 class="h2 mb-0" style="color: white">Здравствуйте, {{ user.username }}!</h1>
             </div>
             <div class="main-btns">
-                <a href="{% url 'logout' %}" class="btn btn-light" style="width: 200px; height: 55px; font-size: 30px; padding: 5px; color: black;">Выйти</a>
+                <a href="{% url 'logout' %}" class="btn btn-light btn-exit" style="width: 200px; height: 55px; font-size: 30px; padding: 5px; color: black;">Выйти</a>
             </div>
         </header>
         <main>
@@ -71,23 +71,23 @@
                 <p>{{message.mes_text}}</p>
 
                 <h2><strong>Координаты</strong></h2>
+                <button id="openYandexMap" class="btn btn-primary" style="position: absolute; margin-top: 8px;margin-left: 240px;"
+                    data-latitude="{{ message.latitude|floatformat:"6"|default:"0" }}"
+                    data-longitude="{{ message.longitude|floatformat:"6"|default:"0" }}">
+                    Показать на карте
+                </button>
                 <p>Широта: {{message.latitude}}</p>
                 <p>Долгота: {{message.longitude}}</p>
                 <div class="buttons">
                     <a href="{% url 'dispatcher_panel' %}" class="btn btn-dark">Закрыть</a>
                     <a href="mailto:{{ message.ent_mail }}" class="btn btn-primary">Написать на почту</a>
                     <a id="openModal" class="btn btn-danger">Удалить сообщение</a>
-                    <button id="openYandexMap" class="btn btn-primary">
-                        Показать на карте
-                    </button>
                 </div>
             </section>
         </main>
-
         <div id="modal" class="modal-overlay">
             <div class="modal-content">
-                <h4><b>Вы уверены, что хотите удалить это сообщение?</b></h4>
-                <p><b>Процесс необратим!</b></p>
+                <h4><b>Вы уверены, что хотите удалить это сообщение?</b></h4><br>
                 <form method="POST" action="{% url 'message_delete' message.id %}">
                     {% csrf_token %}
                     <button type="submit" class="btn btn-danger delete-btn">Удалить наверняка</button>
