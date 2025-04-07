@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -6,5 +7,9 @@
     <title>Удаление сообщения</title>
 </head>
     <body>
+        <form method="POST" action="{% url 'message_delete' message.id %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger delete-btn" href="{% url 'dispatcher_panel' %}">Удалить наверняка</button>
+        </form>
     </body>
 </html>

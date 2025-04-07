@@ -24,3 +24,17 @@ function init(){
       document.getElementById('id_longitude').value = coords[1];
     });
 }
+
+function checkThemeSelection() {
+  var selectElement = document.getElementById('id_title');
+  var submitButton = document.getElementById('submitButton');
+  var messageElement = document.getElementById('message');
+
+  if (selectElement.value === 'Choose theme') {
+      submitButton.disabled = true;
+      messageElement.style.display = 'block';
+  } else {
+      submitButton.disabled = false;
+      messageElement.style.display = 'none';
+  }
+}

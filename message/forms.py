@@ -6,11 +6,6 @@ class MessagesForm(ModelForm):
         model=Messages
         fields=['title', 'mes_text', 'ent_mail', 'latitude','longitude']
         widgets={
-            'title': TextInput(attrs={
-                'class':'form-control',
-                'placeholder':'Тема сообщения',
-                'required': 'required'
-            }),
             'ent_mail': TextInput(attrs={
                 'class':'form-control',
                 'placeholder':'вашапочта@mail.ru (пример)',

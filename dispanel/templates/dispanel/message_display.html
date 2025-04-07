@@ -28,7 +28,7 @@
             <section class="messages-list">
                 <h3>Новые сообщения</h3>
                 <div class="new_mess">
-                    <button class="toggle-btn"> <span class="arrow">Скрыть</span></button>
+                    <button class="btn toggle-btn" style="border-color: black;"> <span class="arrow">Скрыть</span></button>
                     <div class="readMessages">
                         {% for msg in new_messages %}
                         <a class="message" href="{% url 'message_details' msg.id %}">
@@ -39,13 +39,13 @@
                             <div class="status error"></div>
                         </a>               
                         {%empty%}
-                            <p>Новых сообщений пока нет! Детка, ты выполнила задание на 5+</p>
+                            <p>Новых сообщений пока нет!</p>
                         {%endfor%}
                     </div>
                 </div>
                 <h3>Прочитанные сообщения</h3>
                 <div class="read_mess">
-                    <button class="toggle-btn"> <span class="arrow">Скрыть</span></button>
+                    <button class="btn toggle-btn" style="border-color: black;"> <span class="arrow">Скрыть</span></button>
                     <div class="readMessages">
                         {% for msg in read_messages %}
                         <a class="message" href="{% url 'message_details' msg.id %}">
@@ -71,13 +71,15 @@
                 <p>{{message.mes_text}}</p>
 
                 <h2><strong>Координаты</strong></h2>
-                <button id="openYandexMap" class="btn btn-primary" style="position: absolute; margin-top: 8px;margin-left: 240px;"
-                    data-latitude="{{ message.latitude|floatformat:"6"|default:"0" }}"
-                    data-longitude="{{ message.longitude|floatformat:"6"|default:"0" }}">
-                    Показать на карте
-                </button>
-                <p>Широта: {{message.latitude}}</p>
-                <p>Долгота: {{message.longitude}}</p>
+                <div style="position: flexable; display: flex; gap: 10px; height: 50px;">
+                    <p style="max-width: 100px;">Широта: {{message.latitude}}</p><br>
+                    <p style="max-width: 100px;">Долгота: {{message.longitude}}</p>
+                    <button id="openYandexMap" class="btn btn-primary"
+                        data-latitude="{{ message.latitude|floatformat:"6"|default:"0" }}"
+                        data-longitude="{{ message.longitude|floatformat:"6"|default:"0" }}">
+                        Показать на карте
+                    </button>
+                </div><br>
                 <div class="buttons">
                     <a href="{% url 'dispatcher_panel' %}" class="btn btn-dark">Закрыть</a>
                     <a href="mailto:{{ message.ent_mail }}" class="btn btn-primary">Написать на почту</a>

@@ -9,11 +9,8 @@
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
         <link rel="stylesheet" href="{% static 'main/css/message_form.css'%}">
         <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&apikey=49577f47-020f-439f-b745-2e711ce62d5c"></script>
-        <style>
-            .hidden{
-                display: none;
-            }
-        </style>
+        <script src="{% static 'main\js\map.js'%}"></script>
+        <script src="{% static 'main\js\display.js'%}"></script>
     </head>
     <body>
         <header class="custom-header py-3 px-5 d-flex align-items-center justify-content-between">
@@ -30,7 +27,18 @@
                 <h1 style="margin-bottom: 70px;">Оставьте ваше сообщение:</h1>
                 <form method="post">
                     {% csrf_token %}
-                    {{form.title}}<br>
+                    <div class="form_title">
+                        <select id="id_title" name="title" class="custom-select" style="max-width: 300px;">
+                            <option value="Choose theme">Выберите тему</option>
+                            <option value="Fire">Пожар</option>
+                            <option value="Fire in the forest">Пожар в лесу</option>
+                            <option value="Road repairs">Ремонт дорог</option>
+                            <option value="Clean garbage">Убрать мусор</option>
+                            <option value="Street light">Уличное освещение</option>
+                            <option value="Other">Другое</option>
+                        </select>
+                        <div id="message" style="display:none; margin-top: 1.5%;">Это поле обязательно!</div>
+                    </div><br>
                     {{form.mes_text}}<br>
                     {{form.ent_mail}}<br>
                     <p style="font-size: 20px; margin-right: 100%;">Координаты:</p>
@@ -39,17 +47,19 @@
                         {{ form.longitude }}
                         <a id="openModal" class="btn btn-primary openmap" style="width: 100px;">Карта</a>
                     </div><br>
-                    <button class="btn btn-success btn-lg" type="submit">Отправить сообщение</button>
+                    <button class="btn btn-success btn-lg" type="submit" id="submitButton" disabled>Отправить сообщение</button>
                 </form>
             </div>
-            <script src="{% static 'main\js\map.js'%}"></script>
-            <script src="{% static 'main\js\display.js'%}"></script>
             <div id="modal" class="modal-overlay">
                 <div id="mymap" class="maap"></div>
                 <div class="modal-content">
                     <button id="closeModal" class="btn btn-dark close-btn">Закрыть</button>
                 </div>
             </div>
+            <script>
+                document.getElementById('id_title').addEventListener('change', checkThemeSelection);
+                window.onload = checkThemeSelection;
+            </script>
         </main>
     </body>
 </html>

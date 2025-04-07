@@ -4,7 +4,14 @@ class Messages(models.Model):
     MES_STATUS=[('new', 'Новое'),
                 ('read', 'Прочитано')
                  ]
-    title=models.CharField('Тема', max_length=50)
+    TITLE_STATUS=[('Choose theme','Выберите тему'),
+                  ('Fire','Пожар'),
+                  ('Fire in the forest','Пожар в лесу'),
+                  ('Road repairs','Ремонт дорог'), 
+                  ('Clean garbage','Убрать мусор'),
+                  ('Street light','Уличное освещение'),
+                  ('Other','Другое')]
+    title = models.CharField('Тема', max_length=50, choices=TITLE_STATUS, default='Choose theme')
     mes_text=models.TextField('Сообщение')
     ent_mail=models.CharField('Почта',max_length=50)
     latitude = models.FloatField('Широта', default='0.0')
