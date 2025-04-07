@@ -5,6 +5,7 @@ from django.urls import reverse, reverse_lazy
 from .forms import LoginForm
 from message.models import Messages
 from django.views.generic import DetailView, DeleteView
+
 def login_view(request):
     if request.method == "POST":
         form = LoginForm(data=request.POST)

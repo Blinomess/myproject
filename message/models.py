@@ -10,9 +10,9 @@ class Messages(models.Model):
                   ('Road repairs','Ремонт дорог'), 
                   ('Clean garbage','Убрать мусор'),
                   ('Street light','Уличное освещение'),
-                  ('Other','Другое')]
+                  ('Other','Смотрите тему ниже')]
     title = models.CharField('Тема', max_length=50, choices=TITLE_STATUS, default='Choose theme')
-    mes_text=models.TextField('Сообщение')
+    mes_text=models.TextField('Сообщение', max_length=500)
     ent_mail=models.CharField('Почта',max_length=50)
     latitude = models.FloatField('Широта', default='0.0')
     longitude = models.FloatField('Долгота', default='0.0')

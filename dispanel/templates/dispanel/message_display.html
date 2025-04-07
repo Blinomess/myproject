@@ -28,41 +28,63 @@
             <section class="messages-list">
                 <h3>Новые сообщения</h3>
                 <div class="new_mess">
-                    <button class="btn toggle-btn" style="border-color: black;"> <span class="arrow">Скрыть</span></button>
                     <div class="readMessages">
-                        {% for msg in new_messages %}
-                        <a class="message" href="{% url 'message_details' msg.id %}">
-                            <div>
-                                <strong>{{msg.title}}</strong>
-                                <p>{{ msg.mes_text|truncatechars:50 }}</p>
-                            </div>
-                            <div class="status error"></div>
-                        </a>               
-                        {%empty%}
+                        <button class="btn toggle-btn" style="border-color: black;"><span class="arrow">Скрыть</span></button>
+                    
+                        {% if new_messages %}
+                        <div class="messages-group">
+                            {% for msg in new_messages %}
+                            <a class="message" href="{% url 'message_details' msg.id %}">
+                                <div>
+                                    {% if msg.title == 'Other' %}
+                                        <strong>{{ msg.mes_text|truncatechars:50 }}</strong>
+                                    {% else %}
+                                        <strong>{{ msg.get_title_display }}</strong>
+                                        <p>{{ msg.mes_text|truncatechars:50 }}</p>
+                                    {% endif %}
+                                </div>
+                                <div class="status error"></div>
+                            </a>
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                        <div class="mess_empty">
                             <p>Новых сообщений пока нет!</p>
-                        {%endfor%}
+                        </div>
+                        {% endif %}
                     </div>
                 </div>
                 <h3>Прочитанные сообщения</h3>
                 <div class="read_mess">
-                    <button class="btn toggle-btn" style="border-color: black;"> <span class="arrow">Скрыть</span></button>
                     <div class="readMessages">
-                        {% for msg in read_messages %}
-                        <a class="message" href="{% url 'message_details' msg.id %}">
-                            <div>
-                                <strong>{{msg.title}}</strong>
-                                <p>{{ msg.mes_text|truncatechars:50 }}</p>
-                            </div>
-                        </a>
-                        {%empty%}
+                        <button class="btn toggle-btn" style="border-color: black;"><span class="arrow">Скрыть</span></button>
+                    
+                        {% if read_messages %}
+                        <div class="messages-group">
+                            {% for msg in read_messages %}
+                            <a class="message" href="{% url 'message_details' msg.id %}">
+                                <div>
+                                    {% if msg.title == 'Other' %}
+                                        <strong>{{ msg.mes_text|truncatechars:50 }}</strong>
+                                    {% else %}
+                                        <strong>{{ msg.get_title_display }}</strong>
+                                        <p>{{ msg.mes_text|truncatechars:50 }}</p>
+                                    {% endif %}
+                                </div>
+                            </a>
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                        <div class="mess_empty">
                             <p>Сообщений нет :(</p>
-                        {%endfor%}
+                        </div>
+                        {% endif %}
                     </div>
                 </div>
             </section>
             <section class="message-details">
                 <h2><strong>Тема</strong></h2>
-                <h3>{{message.title}}</h3>
+                <h3>{{message.get_title_display}}</h3>
             
                 <h2><strong>Указанная почта</strong></h2>
                 <h3>{{message.ent_mail}}</h3>
@@ -72,8 +94,8 @@
 
                 <h2><strong>Координаты</strong></h2>
                 <div style="position: flexable; display: flex; gap: 10px; height: 50px;">
-                    <p style="max-width: 100px;">Широта: {{message.latitude}}</p><br>
-                    <p style="max-width: 100px;">Долгота: {{message.longitude}}</p>
+                    <p style="max-width: 100px;">Широта: {{message.latitude|truncatechars:10}}</p><br>
+                    <p style="max-width: 100px;">Долгота: {{message.longitude|truncatechars:10}}</p>
                     <button id="openYandexMap" class="btn btn-primary"
                         data-latitude="{{ message.latitude|floatformat:"6"|default:"0" }}"
                         data-longitude="{{ message.longitude|floatformat:"6"|default:"0" }}">
