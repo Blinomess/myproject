@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function() {
         let longitude = this.getAttribute("data-longitude").replace(",", ".");
 
         if (!isNaN(latitude) && !isNaN(longitude) && latitude !== 0 && longitude !== 0) {
-            const yandexMapUrl = `https://yandex.ru/maps/?ll=${longitude},${latitude}&z=17&mode=routes&rtext=54.913570%2C37.371710~${latitude}%2C${longitude}&rtt=mt`;
+            const yandexMapUrl = `https://yandex.ru/maps/?ll=${longitude},${latitude}&z=17&mode=routes&rtext=55.669957%2C37.480224~${latitude}%2C${longitude}&rtt=mt`;
             window.open(yandexMapUrl, '_blank');
         } else {
             alert("Ошибка: неверные координаты! " + latitude + ", " + longitude);

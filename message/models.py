@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.utils import timezone
 class Messages(models.Model):
     MES_STATUS=[('new', 'Новое'),
                 ('read', 'Прочитано')

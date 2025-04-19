@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, logout
 from django.shortcuts import render, redirect
-from django.urls import reverse, reverse_lazy
+from django.urls import reverse_lazy
 from .forms import LoginForm
 from message.models import Messages
 from django.views.generic import DetailView, DeleteView
@@ -39,11 +39,9 @@ class PanelDisplay (DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         message = context['message']
-
         if message.status=='new':
             message.status='read'
             message.save()
-
         new_messages =Messages.objects.filter(status='new').order_by('-created_at')
         read_messages = Messages.objects.filter(status='read').order_by('-created_at')
         context['new_messages'] = new_messages
@@ -52,6 +50,5 @@ class PanelDisplay (DetailView):
     
 class MessageDelete (DeleteView):
     model=Messages
-    template_name='dispanel/delete.html'
     context_object_name = 'message'
     success_url = reverse_lazy('dispatcher_panel')

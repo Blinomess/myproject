@@ -6,10 +6,8 @@ def message_text(request):
         form=MessagesForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('message_complete')
+            return redirect('home')
     else:   
         form = MessagesForm()
     return render(request, 'message\make_a_message.html', {'form': form})
 
-def message_complete(request):
-    return render(request, 'message\message_complete.html')

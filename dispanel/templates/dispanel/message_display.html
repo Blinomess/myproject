@@ -114,7 +114,7 @@
                 <h4><b>Вы уверены, что хотите удалить это сообщение?</b></h4><br>
                 <form method="POST" action="{% url 'message_delete' message.id %}">
                     {% csrf_token %}
-                    <button type="submit" class="btn btn-danger delete-btn">Удалить наверняка</button>
+                    <button type="submit" class="btn btn-danger delete-btn">Удалить</button>
                 </form>
                 <button id="closeModal" class="btn btn-dark close-btn">Отмена</button>
             </div>
